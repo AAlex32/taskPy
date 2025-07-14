@@ -1,0 +1,20 @@
+class Animal:
+    def voice(self):
+        pass
+
+class Cow:
+    def voice(self):
+        print("Mooo")
+
+class Cat:
+    def voice(self):
+        print("Meow")
+
+class Pig:
+    def voice(self):
+        print("Hruuu hruuu")
+
+animals = [Cow(), Cat(), Pig()]
+
+for animal in animals:
+    animal.voice()
