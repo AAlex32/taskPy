@@ -1,0 +1,18 @@
+Я подготовлю код для запуска. Он уже готов к использованию. Вам нужно скопировать его и запустить на вашем компьютере в Python. Вот финальный вариант:
+
+# Чтение исходного файла
+with open(r"C:\Users\AAnuchin\Desktop\Скриншоты\Новый текстовый документ.txt", 'r', encoding='utf-8') as file:
+    original_text = file.read()
+
+# Создание обратного содержимого
+reversed_text = original_text[::-1]
+
+# Запись в новый файл
+with open(r"C:\Users\AAnuchin\Desktop\Скриншоты\Обратный текст.txt", 'w', encoding='utf-8') as file:
+    file.write(reversed_text)
+
+# Вывод содержимого обоих файлов
+print("Исходный файл:")
+print(original_text)
+print("\nОбратный файл:")
+print(reversed_text)
