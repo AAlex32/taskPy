@@ -1,0 +1,21 @@
+import threading
+import time
+
+def print_numbers(thread_name):
+    print(f"{thread_name} начал выполнение")
+    for i in range(10, 0, -1):
+        print(f"{thread_name} выводит: {i}")
+        time.sleep(1)
+    print(f"{thread_name} закончил выполнение")
+
+# Создаем два потока
+thread1 = threading.Thread(target=print_numbers, args=("Поток 1",))
+thread2 = threading.Thread(target=print_numbers, args=("Поток 2",))
+
+# Запускаем потоки
+thread1.start()
+thread2.start()
+
+# Ждем завершения потоков
+thread1.join()
+thread2.join()
