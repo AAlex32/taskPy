@@ -1,0 +1,38 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import time
+
+driver = webdriver.Chrome()
+
+try:
+    driver.get("https://search.yahoo.com/")
+
+    search_box = driver.find_element(By.NAME, "p")
+    search_box.send_keys("selenide" + Keys.RETURN)
+    time.sleep(3)
+
+    first_result = driver.find_element(By.CSS_SELECTOR, "div#web > ol > li:nth-child(1) a")
+    href = first_result.get_attribute("href")
+    assert "selenide.org" in href, "Первый результат не с selenide.org"
+
+    images_link = driver.find_element(By.LINK_TEXT, "Картинки")
+    images_link.click()
+    time.sleep(3)
+
+    first_image = driver.find_element(By.CSS_SELECTOR, "div#main div.simg")
+  
+    alt_text = first_image.get_attribute("alt")
+    src_url = first_image.get_attribute("src")
+    assert ("selenide.org" in src_url or (alt_text and "selenide" in alt_text.lower())), \
+        "Первое изображение не связано с selenide.org"
+
+    driver.back()
+    time.sleep(3)
+
+    first_result_after = driver.find_element(By.CSS_SELECTOR, "div#web > ol > li:nth-child(1) a")
+    href_after = first_result_after.get_attribute("href")
+    assert href == href_after, "Первый результат после возврата отличается"
+
+finally:
+    driver.quit()
